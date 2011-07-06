@@ -20,6 +20,11 @@
 #     git tdiff -- report.tex
 #     git tdiff HEAD~5.. -- report.tex
 
+if ! which latexdiff ; then
+    echo "fatal: 'latexdiff' not found in \$PATH"
+    # TODO this does not cause git difftool to exit with non-zero status.
+    exit 1
+fi
 
 OLD="$1"
 NEW="$2"
