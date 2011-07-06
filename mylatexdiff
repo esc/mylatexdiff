@@ -1,0 +1,37 @@
+#!/bin/sh
+
+# Configuring for use with git difftool
+# -------------------------------------
+
+# Simply put in your path, and then do:
+#
+#     git difftool --extcmd=mylatexdiff <arguments>
+#
+# You may want to configure the following to stop the prompt
+#
+#     git config --global difftool.prompt false
+#
+# And perhaps also the following alias to spare you some typing and typos:
+#
+#     git config --global alias.tdiff 'difftool --extcmd=mylatexdiff'
+#
+# Examples:
+#
+#     git tdiff -- report.tex
+#     git tdiff HEAD~5.. -- report.tex
+
+
+OLD="$1"
+NEW="$2"
+
+# TODO perhaps move to the directory that the file is in
+# to make sure relative imports are handled correctly
+# Probably best to generate a random filename, and then check that it doesn't
+# exist
+latexdiff --ignore-warnings $OLD $NEW >> diff.tex
+# TODO make compiler configurable via a git-option
+pdflatex diff.tex
+# TODO make viewer configurable via a git-option
+xpdf diff.pdf
+# TODO clean up the mess we made we could just delete all files
+# called diff.* but maybe, just maybe that file exist already in the git-repo
