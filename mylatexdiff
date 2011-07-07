@@ -19,24 +19,24 @@
 #
 # Simply put in your `$PATH`, and then do:
 #
-#     git difftool --extcmd=mylatexdiff <arguments>
+#     $ git difftool --extcmd=mylatexdiff <arguments>
 #
 # Or alternatively specify the complete path:
 #
-#     git difftool --extcmd=</path/to/mylatexdiff> <arguments>
+#     $ git difftool --extcmd=</path/to/mylatexdiff> <arguments>
 #
 # You may want to configure the following option to stop the prompt:
 #
-#     git config --global difftool.prompt false
+#     $ git config --global difftool.prompt false
 #
 # And perhaps also the following alias to spare you some typing and typos:
 #
-#     git config --global alias.tdiff 'difftool --extcmd=mylatexdiff'
+#     $ git config --global alias.tdiff 'difftool --extcmd=mylatexdiff'
 #
 # Examples:
 #
-#     git tdiff -- report.tex
-#     git tdiff HEAD~5.. -- report.tex
+#     $ git tdiff -- report.tex
+#     $ git tdiff HEAD~5.. -- report.tex
 #
 # Options
 # -------
@@ -51,7 +51,7 @@
 #
 # Use `evince` instead of `xpdf` for current project:
 #
-#     git config mylatexdiff.viewer evince
+#     $ git config mylatexdiff.viewer evince
 # 
 
 default_compiler="pdflatex"
