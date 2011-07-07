@@ -11,11 +11,11 @@
 # Configuring for use with git difftool
 # -------------------------------------
 
-# Simply put in your path, and then do:
+# Simply put in your $PATH, and then do:
 #
 #     git difftool --extcmd=mylatexdiff <arguments>
 #
-# You may want to configure the following to stop the prompt
+# You may want to configure the following option to stop the prompt:
 #
 #     git config --global difftool.prompt false
 #
