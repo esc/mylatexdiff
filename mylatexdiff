@@ -75,13 +75,13 @@ function check_exists () {
 }
 
 tmp=$( git_conf "mylatexdiff.compiler")
-[[ -n $tmp ]] && compiler=$tmp || compiler=$default_compiler
+[ -n $tmp ] && compiler=$tmp || compiler=$default_compiler
 
 tmp=$( git_conf "mylatexdiff.extension")
-[[ -n $tmp ]] && extension=$tmp || extension=$default_extension
+[ -n $tmp ] && extension=$tmp || extension=$default_extension
 
 tmp=$( git_conf "mylatexdiff.viewer")
-[[ -n $tmp ]] && viewer=$tmp || viewer=$default_viewer
+[ -n $tmp ] && viewer=$tmp || viewer=$default_viewer
 
 check_exists "latexdiff"
 check_exists $compiler
