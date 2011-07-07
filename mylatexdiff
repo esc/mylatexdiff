@@ -58,17 +58,17 @@ default_compiler="pdflatex"
 default_extension=".pdf"
 default_viewer="xpdf"
 
-function barf () {
+barf () {
     echo "fatal: "$1
     exit 1
     # TODO this does not cause git difftool to exit with non-zero status.
 }
 
-function git_conf () {
+git_conf () {
     echo $( git config $1)
 }
 
-function check_exists () {
+check_exists () {
     if ! which $1 &> /dev/null ; then
         barf "$1 not found in \$PATH"
     fi
