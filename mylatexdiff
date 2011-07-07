@@ -7,16 +7,17 @@
 #
 # `latexdiff` will determine and markup differences between two latex files.
 # When run, `mylatexdiff` will internally run `latexdiff`, compile the output with
-# `pdflatex` and then display the resulting file with `xpdf`.
+# and then display the resulting file with a viwer. Compiler, viewer and file
+# type can be configured with options.
 #
 # Author:  valentin.haenel@gmx.de (2011)
 # Licence: wtfpl (Do what the fuck you want to public Licence)
 #          http://sam.zoy.org/wtfpl/
 #
-# Configuring for use with git difftool
-# -------------------------------------
-
-# Simply put in your $PATH, and then do:
+# Configuring for use with `git difftool`
+# ---------------------------------------
+#
+# Simply put in your `$PATH`, and then do:
 #
 #     git difftool --extcmd=mylatexdiff <arguments>
 #
@@ -36,6 +37,22 @@
 #
 #     git tdiff -- report.tex
 #     git tdiff HEAD~5.. -- report.tex
+#
+# Options
+# -------
+# You can use standard Git options to configure the behaviour. The follwing
+# options are accepted:
+#
+#     mylatexdiff.compiler  : latex compiler, default: `pdflatex`
+#     mylatexdiff.extension : file extension, default: `.pdf`
+#     mylatexdiff.viewer    : viewer to display file, default: `xpdf`
+#
+# Examples:
+#
+# Use `evince` instead of `xpdf` for current project:
+#
+#     git config mylatexdiff.viewer evince
+# 
 
 default_compiler="pdflatex"
 default_extension=".pdf"
@@ -84,9 +101,7 @@ NEW="$2"
 # Probably best to generate a random filename, and then check that it doesn't
 # exist
 latexdiff --ignore-warnings $OLD $NEW >> diff.tex
-# TODO make compiler configurable via a git-option
 $compiler diff.tex
-# TODO make viewer configurable via a git-option
 $viewer "diff"$extension
 # TODO clean up the mess we made we could just delete all files
 # called diff.* but maybe, just maybe that file exist already in the git-repo
