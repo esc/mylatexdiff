@@ -1,5 +1,13 @@
 #!/bin/sh
 
+# mylatexdiff
+# -----------
+#
+# A shell script wrapper around `latexdiff` for use with `git difftool`.
+#
+# Author:  valentin.haenel@gmx.de (2011)
+# Licence: wtfpl (Do what the fuck you want to public Licence)
+#
 # Configuring for use with git difftool
 # -------------------------------------
 
