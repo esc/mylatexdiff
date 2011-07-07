@@ -5,6 +5,10 @@
 #
 # A shell script wrapper around `latexdiff` for use with `git difftool`.
 #
+# `latexdiff` will determine and markup differences between two latex files.
+# When run, `mylatexdiff` will internally run `latexdiff`, compile the output with
+# `pdflatex` and then display the resulting file with `xpdf`.
+#
 # Author:  valentin.haenel@gmx.de (2011)
 # Licence: wtfpl (Do what the fuck you want to public Licence)
 #
