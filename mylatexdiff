@@ -19,6 +19,10 @@
 #
 #     git difftool --extcmd=mylatexdiff <arguments>
 #
+# Or alternatively specify the complete path:
+#
+#     git difftool --extcmd=</path/to/mylatexdiff> <arguments>
+#
 # You may want to configure the following option to stop the prompt:
 #
 #     git config --global difftool.prompt false
