@@ -6,8 +6,8 @@
 # A shell script wrapper around `latexdiff` for use with `git difftool`.
 #
 # `latexdiff` will determine and markup differences between two latex files.
-# When run, `mylatexdiff` will internally run `latexdiff`, compile the output with
-# and then display the resulting file with a viwer. Compiler, viewer and file
+# When run, `mylatexdiff` will internally run `latexdiff`, compile the output
+# and then display the resulting file with a viewer. Compiler, viewer and file
 # type can be configured with options.
 #
 # Author:  valentin.haenel@gmx.de (2011)
@@ -40,7 +40,7 @@
 #
 # Options
 # -------
-# You can use standard Git options to configure the behaviour. The follwing
+# You can use standard Git options to configure the behaviour. The following
 # options are accepted:
 #
 #     mylatexdiff.compiler  : latex compiler, default: `pdflatex`
