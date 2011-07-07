@@ -37,11 +37,44 @@
 #     git tdiff -- report.tex
 #     git tdiff HEAD~5.. -- report.tex
 
-if ! which latexdiff ; then
-    echo "fatal: 'latexdiff' not found in \$PATH"
-    # TODO this does not cause git difftool to exit with non-zero status.
+default_compiler="pdflatex"
+default_extension=".pdf"
+default_viewer="xpdf"
+
+function barf () {
+    echo "fatal: "$1
     exit 1
+}
+
+function git_conf () {
+    echo $( git config $1)
+    # TODO this does not cause git difftool to exit with non-zero status.
+}
+
+tmp=$( git_conf "mylatexdiff.compiler")
+[[ -n $tmp ]] && compiler=$tmp || compiler=$default_compiler
+
+tmp=$( git_conf "mylatexdiff.extension")
+[[ -n $tmp ]] && extension=$tmp || extension=$default_extension
+
+tmp=$( git_conf "mylatexdiff.viewer")
+[[ -n $tmp ]] && viewer=$tmp || viewer=$default_viewer
+
+if ! which latexdiff &> /dev/null ; then
+    barf "'latexdiff' not found in \$PATH"
 fi
+
+if ! which $compiler &> /dev/null ; then
+    barf "$compiler not found in \$PATH"
+fi
+
+if ! which $viewer &> /dev/null ; then
+    barf "$viewer not found in \$PATH"
+fi
+
+echo "using compiler: "$compiler
+echo "using extension: "$extension
+echo "using viewer: "$viewer
 
 OLD="$1"
 NEW="$2"
@@ -52,8 +85,8 @@ NEW="$2"
 # exist
 latexdiff --ignore-warnings $OLD $NEW >> diff.tex
 # TODO make compiler configurable via a git-option
-pdflatex diff.tex
+$compiler diff.tex
 # TODO make viewer configurable via a git-option
-xpdf diff.pdf
+$viewer "diff"$extension
 # TODO clean up the mess we made we could just delete all files
 # called diff.* but maybe, just maybe that file exist already in the git-repo
