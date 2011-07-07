@@ -68,6 +68,12 @@ function git_conf () {
     # TODO this does not cause git difftool to exit with non-zero status.
 }
 
+function check_exists () {
+    if ! which $1 &> /dev/null ; then
+        barf "$1 not found in \$PATH"
+    fi
+}
+
 tmp=$( git_conf "mylatexdiff.compiler")
 [[ -n $tmp ]] && compiler=$tmp || compiler=$default_compiler
 
@@ -77,17 +83,9 @@ tmp=$( git_conf "mylatexdiff.extension")
 tmp=$( git_conf "mylatexdiff.viewer")
 [[ -n $tmp ]] && viewer=$tmp || viewer=$default_viewer
 
-if ! which latexdiff &> /dev/null ; then
-    barf "'latexdiff' not found in \$PATH"
-fi
-
-if ! which $compiler &> /dev/null ; then
-    barf "$compiler not found in \$PATH"
-fi
-
-if ! which $viewer &> /dev/null ; then
-    barf "$viewer not found in \$PATH"
-fi
+check_exists "latexdiff"
+check_exists $compiler
+check_exists $viewer
 
 echo "using compiler: "$compiler
 echo "using extension: "$extension
